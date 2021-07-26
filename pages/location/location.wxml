@@ -1,0 +1,60 @@
+<!--pages/location/location.wxml-->
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}" style="position:absolute">
+  <view slot="backText">返回</view>
+  <view slot="content">定位点名</view>
+</cu-custom>
+<map
+wx:if="{{isOk}}"
+id="map" 
+longitude="{{long}}"
+latitude="{{lat}}"
+scale="18" 
+markers="{{markers}}"
+circles='{{circles}}'
+show-location
+show-scale
+bindtap='onmaptap'
+animation="{{aniData}}"
+style="width: 100vw; height: 90vh;">
+</map>
+
+<block wx-if="{{status==0}}">
+  <view class="padding bg-white" style='height:10vh' animation="{{aniData}}">
+        <view class='flex'>
+          <button class=" flex-sub margin-xs padding cu-btn round line-orange shadow text-lg text-shadow" bindtap='radius_a'>范围+</button>
+          <button class=" flex-sub margin-xs padding cu-btn round line-yellow shadow text-lg text-shadow" bindtap='radius_m'>范围-</button>
+          <button class=" flex-twice margin-xs padding cu-btn round bg-blue shadow-lg text-lg" bindtap='start'>开始点名</button>
+        </view>
+  </view>
+</block>
+<block wx-if="{{status==1}}">
+  <view class="padding bg-white" style="height:10vh;" animation="{{aniData}}">
+        <view class='flex'>
+          <button class=" flex-sub margin-xs padding cu-btn round bg-green shadow-lg text-lg" bindtap='end'>结束</button>
+        </view>
+  </view>
+</block>
+<scroll-view style="width:100vw;height:30vh;position:absolute;top:100vh;left:0" class=' solid-top' scroll-y="true" animation="{{aniData2}}">
+  <view class="cu-card">
+    <view class='cu-item shadow'>
+      <view class="cu-list menu">
+        <view class="cu-item">
+          <view class="content">
+            <text class="cuIcon-info text-grey"></text>
+            <text class="text-grey">名称：{{checkinsheet.name}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="cu-list grid col-2 solid-top" style='margin:0'>
+        <view class="cu-item">
+          <view class="cuIcon-round text-blue"></view>
+          <text>应到{{should_num}}人</text>
+        </view>
+        <view class="cu-item">
+          <view class="cuIcon-roundcheck text-green"></view>
+          <text>实到{{actual_num}}人</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>

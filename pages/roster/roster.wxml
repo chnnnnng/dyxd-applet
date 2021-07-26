@@ -1,0 +1,42 @@
+<!--pages/roster/roster.wxml-->
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+  <view slot="backText">返回</view>
+	<view slot="content">花名册</view>
+</cu-custom>
+<view class="cu-bar bg-white">
+  <view class="action">
+    <text class="cuIcon-title text-green"></text>
+    <text>基本信息</text>
+  </view>
+</view>
+<view class="cu-card no-card">
+  <view class='cu-item shadow'>
+    <view class="cu-list menu">
+      <view class="cu-item">
+        <view class="content">
+          <text class="cuIcon-info text-grey"></text>
+          <text class="text-grey">名称：{{info.name}}</text>
+        </view>
+      </view>
+      <view class="cu-item flex">
+        <button class="flex-sub margin-xs padding cu-btn line-red" bindtap='onDeleteTap'>删除</button>
+        <button class="flex-twice margin-xs padding cu-btn line-blue shadow-lg text-lg" bindtap='onCreateCheckinsheetTap'>创建点名表</button>
+        <button class="flex-twice margin-xs padding cu-btn bg-blue shadow-lg text-lg" bindtap='onCreateCheckinbookTap'>创建点名册</button>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="cu-bar bg-white margin-top">
+  <view class="action">
+    <text class="cuIcon-title text-blue"></text>
+    <text>成员</text>
+  </view>
+</view>
+<view class="cu-list menu">
+      <view class="cu-item" wx:for="{{roster}}" wx:for-item="man">
+        <view class="content">
+            <text class="cuIcon-people text-grey"></text>
+            <text class="text-grey">{{man}}</text>
+        </view>
+      </view>
+    </view>

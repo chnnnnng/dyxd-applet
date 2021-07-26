@@ -1,0 +1,48 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/fillinfo/fillinfo",
+    "pages/mine/mine",
+    "pages/discovery/discovery",
+    "pages/create/create",
+    "pages/checkinsheet/checkinsheet",
+    "pages/created/created",
+    "pages/checkinbook/checkinbook",
+    "pages/roster/roster",
+    "pages/createRoster/createRoster",
+    "pages/createCheckinbook/createCheckinbook",
+    "pages/expose/expose",
+    "pages/location/location",
+    "pages/checkin/location",
+    "pages/checkin/f2f",
+    "pages/password/password",
+    "pages/password/set",
+    "pages/history/history",
+    "pages/scan/set",
+    "pages/scan/scan",
+    "pages/link/link",
+    "pages/link/checkin",
+    "pages/welcome/welcome"
+  ],
+  "subpackages": [
+    {
+      "root": "packageB",
+      "pages": [
+        "pages/analysis/analysis",
+        "pages/analysis/checkinsheet",
+        "pages/analysis/checkinbook"
+      ]
+    }
+  ],
+  "window": {
+    "navigationStyle": "custom"
+  },
+  "usingComponents": {
+    "cu-custom": "/colorui/components/cu-custom"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "小程序将根据您的位置搜寻签到信息"
+    }
+  }
+}

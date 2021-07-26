@@ -1,0 +1,144 @@
+<!--pages/analysis/checkinsheet.wxml-->
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+  <view slot="backText">返回</view>
+	<view slot="content">统计·点名表</view>
+</cu-custom>
+
+
+<scroll-view scroll-x class="bg-white nav text-center">
+  <view class="cu-item {{0==TabCur?'text-blue cur':''}}" bindtap="tabSelect" data-id="0">
+    <text class="cuIcon-news" data-id="0"></text> 概况
+  </view>
+  <view class="cu-item {{1==TabCur?'text-blue cur':''}}" bindtap="tabSelect" data-id="1">
+    <text class="cuIcon-form" data-id="1"></text> 详情
+  </view>
+</scroll-view>
+
+
+<view wx:if="{{TabCur==0}}">
+  <view class="cu-card">
+    <view class='cu-item shadow'>
+      <view class="cu-list" style='margin:0;height:35vh'>
+        <ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ec }}" ></ec-canvas>
+      </view>
+      <view class="cu-list grid col-4 solid-top" style='margin:0'>
+        <view class="cu-item">
+          <view class="cuIcon-round text-blue"></view>
+          <text>应到{{checkinsheet.num_should}}人</text>
+        </view>
+        <view class="cu-item">
+          <view class="cuIcon-roundcheck text-green"></view>
+          <text>实到{{checkinsheet.num_actual}}人</text>
+        </view>
+        <view class="cu-item">
+          <view class="cuIcon-roundright text-yellow"></view>
+          <text>请假{{checkinsheet.num_leave}}人</text>
+        </view>
+        <view class="cu-item">
+          <view class="cuIcon-roundclose text-red"></view>
+          <text>缺勤{{checkinsheet.num_absent}}人</text>
+        </view>
+      </view>
+      <view class="cu-list menu">
+      <view class="cu-item">
+        <view class="content">
+          <text class="cuIcon-info text-grey"></text>
+          <text class="text-grey">名称：{{checkinsheet.name}}</text>
+        </view>
+      </view>
+      <view class="cu-item" >
+        <view class="content">
+          <text class="cuIcon-circle text-grey"></text>
+          <text class="text-grey">所属：{{checkinbook.name == null ? '无' : checkinbook.name}}</text>
+        </view>
+      </view>
+      <view class="cu-item">
+        <view class="content">
+          <text class="cuIcon-peoplelist text-grey"></text>
+          <text class="text-grey">使用：{{roster.name}}</text>
+        </view>
+      </view>
+      <view class="cu-item">
+        <view class="content">
+            <text class="cuIcon-settings text-grey"></text>
+            <text class="text-grey">状态：{{checkinsheet.status == 1 ? '已关闭' : '进行中'}}</text>
+        </view>
+      </view>
+    </view>
+    </view>
+  </view>
+</view>
+
+
+<view wx:if="{{TabCur==1}}">
+
+<view class="cu-bar bg-white ">
+  <view class="action">
+    <text class="cuIcon-title text-blue"></text>
+    <text>筛选</text>
+  </view>
+  <view class="action">
+        <block wx:if="{{only==-1}}">
+        <view class="cu-tag line-orange light" bindtap='onOnlyAbsentTap'>缺勤({{checkinsheet.num_absent}})</view>
+        <view class="cu-tag line-olive light" bindtap='onOnlyAttendTap'>出勤({{checkinsheet.num_actual}})</view>
+        <view class="cu-tag line-yellow light" bindtap='onOnlyLeaveTap'>请假({{checkinsheet.num_leave}})</view>
+        </block>
+        <block wx:if="{{only==1}}">
+        <view class="cu-tag line-orange light" bindtap='onOnlyAbsentTap'>缺勤({{checkinsheet.num_absent}})</view>
+        <view class="cu-tag bg-olive light" bindtap='onAllShowTap'>出勤({{checkinsheet.num_actual}})</view>
+        <view class="cu-tag line-yellow light" bindtap='onOnlyLeaveTap'>请假({{checkinsheet.num_leave}})</view>
+        </block>
+        <block wx:if="{{only==2}}">
+        <view class="cu-tag line-orange light" bindtap='onOnlyAbsentTap'>缺勤({{checkinsheet.num_absent}})</view>
+        <view class="cu-tag line-olive light" bindtap='onOnlyAttendTap'>出勤({{checkinsheet.num_actual}})</view>
+        <view class="cu-tag bg-yellow light" bindtap='onAllShowTap'>请假({{checkinsheet.num_leave}})</view>
+        </block>
+        <block wx:if="{{only==3}}">
+        <view class="cu-tag bg-orange light" bindtap='onAllShowTap'>缺勤({{checkinsheet.num_absent}})</view>
+        <view class="cu-tag line-olive light" bindtap='onOnlyAttendTap'>出勤({{checkinsheet.num_actual}})</view>
+        <view class="cu-tag line-yellow light" bindtap='onOnlyLeaveTap'>请假({{checkinsheet.num_leave}})</view>
+        </block>
+  </view>
+</view>
+
+<view class="cu-card no-card margin-top-xs" wx:for="{{checkinitems}}" wx:for-item="item" wx:key="index" bindtap='onCheckinitemTap' data-i='{{index}}' wx-if="{{only==-1?true:(item.status==only)}}">
+    <view class='cu-item shadow'>
+      <view class="cu-list menu">
+        <view class="cu-item">
+          <view class="content padding-tb-sm">
+            <view>
+              <text class="cuIcon-people text-blue margin-right-xs"></text><text class="text-grey">姓名：</text><text class='text-blue'>{{item.user == null ? '未知' : item.user}}</text></view>
+            <view class="text-gray text-sm">
+              <text class="cuIcon-infofill margin-right-xs"></text>编号：{{item.identity_code}}</view>
+          </view>
+          <view class="action">
+            <view wx-if="{{item.status==1}}"><text class="cuIcon-roundcheck text-green margin-right-xs" ></text><text class="text-green">出勤</text></view>
+            <view wx-if="{{item.status==2}}"><text class="cuIcon-roundright text-yellow margin-right-xs" ></text><text class="text-yellow">请假</text></view>
+            <view wx-if="{{item.status==3}}"><text class="cuIcon-roundclose text-red margin-right-xs" ></text><text class="text-red">缺勤</text></view>
+          </view>
+        </view>
+      </view>
+    </view>
+</view>
+
+<view class="cu-modal bottom-modal {{showModal?'show':''}}" bindtap="hideModal">
+  <view class="cu-dialog" catchtap>
+    <view class="cu-bar bg-white">
+      <view class="action text-grey">修改{{checkinitems[selectedItemIndex].user==null?'未知':checkinitems[selectedItemIndex].user}}({{checkinitems[selectedItemIndex].identity_code}})的状态</view>
+      <view class="action text-green" bindtap="{{checkinitems[selectedItemIndex].status==selectedBtn||selectedBtn==null?'':'onEditTap'}}">修改</view>
+    </view>
+    <view class="grid col-3 padding-sm">
+      <view class='padding-xs'>
+        <button class="cu-btn green light lg block {{checkinitems[selectedItemIndex].status==1?'line-grey':(selectedBtn==1?'bg-green':'line-green')}}"  bindtap="{{checkinitems[selectedItemIndex].status==1?'':'onSetTap'}}" data-type='1'>出勤</button>
+      </view>
+      <view class='padding-xs'>
+        <button class="cu-btn yellow light lg block {{checkinitems[selectedItemIndex].status==2?'line-grey':(selectedBtn==2?'bg-yellow':'line-yellow')}}" bindtap="{{checkinitems[selectedItemIndex].status==2?'':'onSetTap'}}" data-type='2'>请假</button>
+      </view>
+      <view class='padding-xs'>
+        <button class="cu-btn red light lg block {{checkinitems[selectedItemIndex].status==3?'line-grey':(selectedBtn==3?'bg-red':'line-red')}}" bindtap="{{checkinitems[selectedItemIndex].status==3?'':'onSetTap'}}" data-type='3'>缺勤</button>
+      </view>
+    </view>
+  </view>
+</view>
+
+</view>

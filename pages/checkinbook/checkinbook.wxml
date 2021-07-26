@@ -1,0 +1,67 @@
+<!--pages/checkinbook/checkinbook.wxml-->
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+  <view slot="backText">返回</view>
+	<view slot="content">点名册</view>
+</cu-custom>
+<view class="cu-bar bg-white">
+  <view class="action">
+    <text class="cuIcon-title text-green"></text>
+    <text>基本信息</text>
+  </view>
+</view>
+<view class="cu-card">
+  <view class='cu-item shadow'>
+    <view class="cu-list menu">
+      <view class="cu-item">
+        <view class="content">
+          <text class="cuIcon-info text-grey"></text>
+          <text class="text-grey">名称：{{checkinbook.name}}</text>
+        </view>
+      </view>
+      <view class="cu-item" bindtap='onRosterTap'>
+        <view class="content">
+          <text class="cuIcon-peoplelist text-grey"></text>
+          <text class="text-grey">使用：{{roster.name}}</text>
+        </view>
+      </view>
+      <view class="cu-item">
+        <view class="content">
+            <text class="cuIcon-settings text-grey"></text>
+            <text class="text-grey">状态：{{checkinbook.status == 1 ? '已关闭' : '进行中'}}</text>
+        </view>
+        <view class="action">
+          <switch class="switch sm" bindchange="switchStatus" checked="{{checkinbook.status == 0}}"></switch>
+        </view>
+      </view>
+      <view class="cu-item flex">
+        <button class="flex-sub margin-xs padding cu-btn line-red" bindtap='onDeleteTap'>删除</button>
+        <button class="flex-treble margin-xs padding cu-btn line-blue shadow-lg text-lg" bindtap='onCreateCheckinsheetTap' wx-if="{{checkinbook.status == 0}}">在此名册内新建点名表</button>
+        <button class="flex-treble margin-xs padding cu-btn line-blue shadow-lg text-lg" bindtap='onAnalyseTap' wx-if="{{checkinbook.status == 1}}">统计分析</button>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="cu-bar bg-white">
+  <view class="action">
+    <text class="cuIcon-title text-blue"></text>
+    <text>点名表</text>
+  </view>
+</view>
+<view class="cu-card no-card margin-top-sm" wx:for="{{checkinsheet}}" wx:for-item="sheet" bindtap='onCheckinsheetTap' data-id='{{sheet.id}}'>
+    <view class='cu-item shadow'>
+      <view class="cu-list menu">
+        <view class="cu-item">
+          <view class="content">
+            <text class="cuIcon-info text-grey"></text>
+            <text class="text-grey">名称：{{sheet.name}}</text>
+          </view>
+        </view>
+        <view class="cu-item">
+          <view class="content">
+              <text class="cuIcon-settings text-grey"></text>
+              <text class="text-grey">状态：{{sheet.status == 1 ? '已关闭' : '进行中'}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>

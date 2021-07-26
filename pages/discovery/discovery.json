@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "DiscoveryCheckinCard":"/components/DiscoveryCheckinCard/DiscoveryCheckinCard"
+  }
+}

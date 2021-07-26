@@ -1,0 +1,30 @@
+<!--pages/welcome/welcome.wxml-->
+<view style='width:100vw;position:absolute;top:0' animation="{{animdata}}">
+<view style='height:100vh;width:100vw' class='flex align-center bg-white padding-sm'>
+  <image src='/static/imgs/welcome-1.png' mode='widthFix' class='response'></image>
+</view>
+<view style='height:100vh;width:100vw' class='flex align-center bg-white padding-sm'>
+  <image src='/static/imgs/welcome-2.png' mode='widthFix' class='response'></image>
+</view>
+<view style='height:100vh;width:100vw' class='flex align-center bg-white padding-sm'>
+  <view class='grid col-1' style='width:100%'>
+    <image src='/static/imgs/welcome-3.png' mode='widthFix' class='response'></image>
+
+    <view class="cu-form-group padding">
+      <view class="title">你的名字</view>
+      <input placeholder="请填写真实姓名" name='name' bindinput='onrealnameinput' placeholder-class="placeholder-center"></input>
+    </view>
+
+    <view class="padding flex flex-direction">
+      <button class="cu-btn line-orange lg" bindtap='onContinue' style='padding-top:0' disabled='{{isContinueDisabled}}'>继续</button>
+    </view>
+    <view class="padding flex justify-end" wx-if="{{type==0}}">
+      <text class='text-grey' bindtap='onSkip'>跳过</text>
+    </view>
+  </view>
+
+</view>
+<view style='height:100vh;width:100vw' class='flex align-center bg-white padding-sm'>
+  <image src='/static/imgs/welcome-4.png' mode='widthFix' class='response'></image>
+</view>
+</view>

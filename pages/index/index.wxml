@@ -1,0 +1,12 @@
+<!--index.wxml-->
+<scroll-view scroll-y class="scrollPage" animation="{{animdata}}" style='position:absolute;top:-100vh'>
+  <image src='/static/imgs/bg.png' mode='widthFix' class='response'></image>
+  <view class='cu-tabbar-height'></view>
+  <view class='nav-list'>
+    <navigator hover-class='none' url="{{item.url}}" class="nav-li bg-{{item.color}}" wx:for="{{elements}}" wx:key>
+      <view class="nav-title">{{item.title}}</view>
+      <view class="nav-name">{{item.show}}</view>
+      <text class='cuIcon-{{item.icon}}'></text>
+    </navigator>
+  </view>
+</scroll-view>

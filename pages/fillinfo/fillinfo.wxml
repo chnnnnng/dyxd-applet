@@ -1,0 +1,26 @@
+<cu-custom bgColor="bg-gradual-blue" isBack="{{false}}">
+	<view slot="content">完善信息</view>
+</cu-custom>
+<form>
+<view class='cu-tabbar-height'></view>
+<!-- <view class="cu-form-group margin-top-lg">
+		<view class="title">手机号码</view>
+		<input placeholder="请输入真实的手机号码" name="phone" bindinput='onphoneinput' auto-focus=''></input>
+		<view class="cu-capsule radius">
+			<view class="cu-tag bg-blue">
+				+86
+			</view>
+			<view class="cu-tag line-blue">
+				中国大陆
+			</view>
+		</view>
+	</view> -->
+  <view class="cu-form-group margin-top">
+		<view class="title">姓名</view>
+		<input placeholder="您的姓名会显示在名册中,请填写真实姓名" name='name' bindinput='onrealnameinput'></input>
+	</view>
+  <view class='cu-tabbar-height'></view>
+  <view class="padding flex flex-direction">
+  <button class="cu-btn bg-blue lg" open-type="getUserInfo" bindgetuserinfo='onSubmit'>登陆</button>
+</view>
+</form>

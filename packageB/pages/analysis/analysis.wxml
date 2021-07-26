@@ -1,0 +1,54 @@
+<!--pages/analysis/analysis.wxml-->
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+  <view slot="backText">返回</view>
+	<view slot="content">统计</view>
+</cu-custom>
+<scroll-view scroll-x class="bg-white nav text-center">
+  <view class="cu-item {{0==TabCur?'text-blue cur':''}}" bindtap="tabSelect" data-id="0">
+    <text class="cuIcon-news" data-id="0"></text> 点名表
+  </view>
+  <view class="cu-item {{1==TabCur?'text-blue cur':''}}" bindtap="tabSelect" data-id="1">
+    <text class="cuIcon-circle" data-id="1"></text> 点名册
+  </view>
+</scroll-view>
+<view wx:if="{{TabCur==0}}">
+  <view class="cu-card" wx:for="{{checkinsheet}}" wx:for-item="sheet" bindtap='onCheckinsheetTap' data-id='{{sheet.id}}' wx:if="{{sheet.status == 1}}">
+    <view class='cu-item shadow'>
+      <view class="cu-list menu">
+        <view class="cu-item">
+          <view class="content">
+            <text class="cuIcon-info text-grey"></text>
+            <text class="text-grey">名称：{{sheet.name}}</text>
+          </view>
+        </view>
+        <view class="cu-item">
+          <view class="content">
+              <text class="cuIcon-settings text-grey"></text>
+              <text class="text-grey">状态：{{sheet.status == 1 ? '已关闭' : '进行中'}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view wx:if="{{TabCur==1}}">
+<view class="cu-card" wx:for="{{checkinbook}}" wx:for-item="book" bindtap='onCheckinbookTap' data-id='{{book.id}}' wx-if="{{book.status == 1}}">
+    <view class='cu-item shadow'>
+      <view class="cu-list menu">
+        <view class="cu-item">
+          <view class="content">
+            <text class="cuIcon-info text-grey"></text>
+            <text class="text-grey">名称：{{book.name}}</text>
+          </view>
+        </view>
+        <view class="cu-item">
+          <view class="content">
+              <text class="cuIcon-settings text-grey"></text>
+              <text class="text-grey">状态：{{book.status == 1 ? '已关闭' : '进行中'}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

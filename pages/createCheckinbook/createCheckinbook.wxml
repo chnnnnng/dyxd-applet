@@ -1,0 +1,22 @@
+<!--pages/createCheckinbook/createCheckinbook.wxml-->
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+  <view slot="backText">返回</view>
+	<view slot="content">创建点名册</view>
+</cu-custom>
+<form>
+  <view class="cu-form-group margin-top">
+      <view class="title">花名册</view>
+      <picker bindchange="onRosterPickerChange" value="{{rosterIndex}}" range="{{rosterPicker}}">
+        <view class="picker">
+          {{rosterIndex?rosterPicker[rosterIndex]:'选择一个花名册'}}
+        </view>
+      </picker>
+    </view>
+    <view class="cu-form-group margin-top">
+      <view class="title">名称</view>
+      <input placeholder="如:向日葵小班上学期算术课" bindinput='onNameinput'></input>
+    </view>
+  <view class="padding flex flex-direction margin-top">
+    <button class="cu-btn bg-blue lg" bindtap='onBtnTap'>确认创建</button>
+  </view>
+</form>

@@ -1,0 +1,15 @@
+<!--pages/discovery/discovery.wxml-->
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+  <view slot="backText">返回</view>
+	<view slot="content">发现</view>
+</cu-custom>
+<view class="cu-bar bg-white">
+  <view class="action">
+    <text class="cuIcon-title text-blue"></text>
+    <text>附近的签到</text>
+  </view>
+</view>
+<DiscoveryCheckinCard wx:if="{{!isEmpty}}" wx:for="{{checkins}}" wx:for-item="checkin"
+  distance="{{checkin.distance}}" name="{{checkin.checkinsheet.name}}" username="{{checkin.checkinsheet.user}}" numshould="{{checkin.checkinsheet.num_should}}" numactual="{{checkin.checkinsheet.num_actual}}" numleave="{{checkin.checkinsheet.num_leave}}" numabsent="{{checkin.checkinsheet.num_absent}}" type="{{checkin.type}}" bindtap="onTap" data-type="{{checkin.type}}" data-checkinsheet="{{checkin.checkinsheet.id}}"
+></DiscoveryCheckinCard>
+<image wx:if="{{isEmpty}}" src='/static/imgs/searching.png' mode='widthFix' class='response' style='position:absolute;bottom:50rpx'></image>

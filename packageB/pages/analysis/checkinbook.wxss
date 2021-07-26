@@ -1,0 +1,6 @@
+/* pages/analysis/checkinbook.wxss */
+.hidden-chart{
+  position:absolute;
+  left:-100vw;
+  width:100vw;
+}

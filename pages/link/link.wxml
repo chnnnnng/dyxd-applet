@@ -1,0 +1,40 @@
+<!--pages/link/link.wxml-->
+<view class="bg-white" style='height:100vh'>
+  <cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+    <view slot="backText">返回</view>
+    <view slot="content">链接签</view>
+  </cu-custom>
+  <view class="cu-timeline">
+    <view class="cu-time">How?</view>
+    <view class="cu-item text-green cuIcon-unlock">
+      <view class="content bg-green shadow-blur">
+        <text>「第一步」</text> 点按下方“开放链接”按钮
+      </view>
+    </view>
+    <view class="cu-item text-blue cuIcon-link">
+      <view class="content bg-blue shadow-blur">
+        <text>「第二步」</text> 点按下方“发送”按钮或右上角菜单中的“发送给朋友”按钮，发送链接
+      </view>
+    </view>
+    <view class="cu-item text-red cuIcon-lock">
+      <view class="content bg-red shadow-blur">
+        <text>「第三步」</text> 点按“关闭链接按钮”
+      </view>
+    </view>
+    <view class="cu-item text-grey cuIcon-roundcheck">
+      <view class="bg-grey content">
+        <text>「第四步」</text> 完成↖(^ω^)↗
+      </view>
+    </view>
+  </view>
+  <view class='cu-tabbar-height'></view>
+  <view class="cu-card">
+    <view class="cu-list">
+      <view class="cu-item flex">
+        <button wx-if="{{status==0}}" class="flex-sub margin padding cu-btn bg-green shadow" bindtap='onOpenTap'>开放链接</button>
+        <button wx-if="{{status==1}}" class="flex-sub margin padding cu-btn bg-blue shadow" open-type="share">发送链接</button>
+        <button wx-if="{{status==1}}" class="flex-sub margin padding cu-btn bg-red shadow" bindtap='onCloseTap'>关闭链接</button>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,104 @@
+<!--pages/checkinsheet/checkinsheet.wxml-->
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+  <view slot="backText">返回</view>
+	<view slot="content">点名表</view>
+</cu-custom>
+
+<view class="cu-bar bg-white">
+  <view class="action">
+    <text class="cuIcon-title text-green"></text>
+    <text>基本信息</text>
+  </view>
+</view>
+<view class="cu-card">
+  <view class='cu-item shadow'>
+    <view class="cu-list menu">
+      <view class="cu-item">
+        <view class="content">
+          <text class="cuIcon-info text-grey"></text>
+          <text class="text-grey">名称：{{checkinsheet.name}}</text>
+        </view>
+      </view>
+      <view class="cu-item" bindtap='onCheckinbookTap'>
+        <view class="content">
+          <text class="cuIcon-circle text-grey"></text>
+          <text class="text-grey">所属：{{checkinbook.name == null ? '无' : checkinbook.name}}</text>
+        </view>
+      </view>
+      <view class="cu-item" bindtap='onRosterTap'>
+        <view class="content">
+          <text class="cuIcon-peoplelist text-grey"></text>
+          <text class="text-grey">使用：{{roster.name}}</text>
+        </view>
+      </view>
+      <view class="cu-item">
+        <view class="content">
+            <text class="cuIcon-settings text-grey"></text>
+            <text class="text-grey">状态：{{checkinsheet.type!=5?'「'+checkinsheet.type_name+'」':''}}{{checkinsheet.status == 1 ? '已关闭' : '进行中'}}</text>
+        </view>
+        <view class="action">
+          <switch class="switch sm" bindchange="switchStatus" checked="{{checkinsheet.status == 0}}"></switch>
+        </view>
+      </view>
+    </view>
+    <view class="cu-list grid col-4 solid-top" style='margin:0'>
+      <view class="cu-item">
+        <view class="cuIcon-round text-blue"></view>
+        <text>应到{{checkinsheet.num_should}}人</text>
+      </view>
+      <view class="cu-item">
+        <view class="cuIcon-roundcheck text-green"></view>
+        <text>实到{{checkinsheet.num_actual}}人</text>
+      </view>
+      <view class="cu-item">
+        <view class="cuIcon-roundright text-yellow"></view>
+        <text>请假{{checkinsheet.num_leave}}人</text>
+      </view>
+      <view class="cu-item">
+        <view class="cuIcon-roundclose text-red"></view>
+        <text>缺席{{checkinsheet.num_absent}}人</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="cu-bar bg-white margin-top">
+  <view class="action">
+    <text class="cuIcon-title text-yellow"></text>
+    <text>操作</text>
+  </view>
+</view>
+<view class='cu-card no-card'>
+  <view class="cu-item shadow">
+    <view class="cu-list grid col-{{checkinsheet.status == 0 ? (checkinsheet.type == 5 ? 3 : 2) : 2}}">
+      <view class="cu-item" bindtap='onStartBTCTap' wx:if="{{checkinsheet.status == 0 && checkinsheet.type == 5 || checkinsheet.type == 0}}">
+        <view class="cuIcon-group_fill text-orange"></view>
+        <text>面对面快签</text>
+      </view>
+      <view class="cu-item" bindtap='onStartLCTCTap' wx:if="{{checkinsheet.status == 0 && checkinsheet.type == 5 || checkinsheet.type == 1}}">
+        <view class="cuIcon-locationfill text-blue"></view>
+        <text>定位签</text>
+      </view>
+      <view class="cu-item" bindtap='onStartQRCCTap' wx:if="{{checkinsheet.status == 0 && checkinsheet.type == 5 || checkinsheet.type == 2}}">
+        <view class="cuIcon-qr_code text-olive"></view>
+        <text>扫码签</text>
+      </view>
+      <view class="cu-item" bindtap='onStartPCTap' wx:if="{{checkinsheet.status == 0 && checkinsheet.type == 5 || checkinsheet.type == 3}}">
+        <view class="cuIcon-commandfill text-yellow"></view>
+        <text>口令签</text>
+      </view>
+      <view class="cu-item" bindtap='onStartLCTap' wx:if="{{checkinsheet.status == 0 && checkinsheet.type == 5 || checkinsheet.type == 4}}">
+        <view class="cuIcon-link text-purple"></view>
+        <text>链接签</text>
+      </view>
+      <view class="cu-item" bindtap='onAnalyseTap' wx:if="{{checkinsheet.status == 1}}">
+        <view class="cuIcon-rankfill text-cyan"></view>
+        <text>统计</text>
+      </view>
+      <view class="cu-item" bindtap='onDeleteTap'>
+        <view class="cuIcon-deletefill text-red"></view>
+        <text>删除点名表</text>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,43 @@
+<!--pages/create/create.wxml-->
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+  <view slot="backText">返回</view>
+	<view slot="content">创建点名表</view>
+</cu-custom>
+<form>
+	<view class="cu-form-group">
+		<view class="title" wx:if="{{isInBook}}">加入点名册</view>
+    <view class="title" wx:if="{{!isInBook}}">单次点名，不加入点名册</view>
+		<switch checked="{{isInBook}}" bindchange='onSwitchChange'></switch>
+	</view>
+  <block wx:if="{{isInBook}}">
+    <view class="cu-form-group margin-top">
+      <view class="title">点名册</view>
+      <picker bindchange="onBookPickerChange" value="{{bookIndex}}" range="{{bookPicker}}">
+        <view class="picker">
+          {{bookIndex?bookPicker[bookIndex]:'选择一个点名册'}}
+        </view>
+      </picker>
+    </view>
+    <view class="cu-form-group margin-top">
+      <view class="title">名称</view>
+      <input placeholder="如:向日葵小班算术课第一节" bindinput='onNameinput'></input>
+    </view>
+  </block>
+  <block wx:if="{{!isInBook}}">
+      <view class="cu-form-group margin-top">
+      <view class="title">花名册</view>
+      <picker bindchange="onRosterPickerChange" value="{{rosterIndex}}" range="{{rosterPicker}}">
+        <view class="picker">
+          {{rosterIndex?rosterPicker[rosterIndex]:'选择一个花名册'}}
+        </view>
+      </picker>
+    </view>
+    <view class="cu-form-group margin-top">
+      <view class="title">名称</view>
+      <input placeholder="如:向日葵小班春游" bindinput='onNameinput'></input>
+    </view>
+  </block>
+  <view class="padding flex flex-direction margin-top">
+    <button class="cu-btn bg-blue lg" bindtap='onBtnTap'>确认创建</button>
+  </view>
+</form>

@@ -1,0 +1,28 @@
+<view class="cu-card case">
+  <view class="cu-item shadow">
+    <view class="image">
+      <image wx:if="{{!type}}" src="/static/imgs/banner-2.jpg" mode="widthFix"></image>
+       <image wx:if="{{type}}" src="/static/imgs/banner-3.jpg" mode="widthFix"></image>
+      <view class="cu-tag bg-blue">{{intDistance}}米</view>
+      <view class="cu-bar bg-shadeBottom">
+        <text class="text-cut">{{name}}</text>
+      </view>
+    </view>
+    <view class="cu-list">
+      <view class="cu-item">
+        <view class="content padding-tb-sm">
+          <view class="text-grey margin-left-sm">{{username}}</view>
+          <view class="text-gray text-sm flex justify-between margin-left-sm">
+            现在
+            <view class="text-gray text-sm margin-right-sm">
+              <text class="cuIcon-round margin-lr-xs"></text> {{numshould}}
+              <text class="cuIcon-roundcheck margin-lr-xs"></text> {{numactual}}
+              <text class="cuIcon-roundright margin-lr-xs"></text> {{numleave}}
+              <text class="cuIcon-roundclose margin-lr-xs"></text> {{numabsent}}
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

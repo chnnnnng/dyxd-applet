@@ -1,0 +1,30 @@
+<!--pages/history/history.wxml-->
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+  <view slot="backText">返回</view>
+	<view slot="content">足迹</view>
+</cu-custom>
+<view class="cu-bar bg-white">
+  <view class="action">
+    <text class="cuIcon-title text-blue"></text>
+    <text>我签过的</text>
+  </view>
+</view>
+<view class='cu-card shadow' wx:for="{{checkins}}" wx:for-item="checkin">
+  <view class='cu-item'>
+    <view class='bg-white padding'>
+      <view class="grid col-1">
+        <view class="flex justify-between">
+          <view class="text-black padding-xs text-left">{{checkin.checkinsheet_name}}</view>
+          <view class="text-blue padding-xs text-right">{{checkin.checkinsheet_user_name}}</view>
+        </view>
+        <view class="flex justify-between">
+          <view class="text-grey padding-xs text-left">{{checkin.checkinitem_time}}</view>        
+          <view wx-if="{{checkin.checkinitem_status==1}}" class="line-green cu-tag round padding-xs padding-lr-sm text-right">出勤</view>
+          <view wx-if="{{checkin.checkinitem_status==2}}" class="line-yellow cu-tag round padding-xs padding-lr-sm text-right">请假</view>
+          <view wx-if="{{checkin.checkinitem_status==3}}" class="line-red cu-tag round padding-xs padding-lr-sm text-right">缺勤</view>
+        </view> 
+      </view>
+    </view>
+  </view>
+</view>
+<image wx:if="{{isEmpty}}" src='/static/imgs/searching.png' mode='widthFix' class='response' style='position:absolute;bottom:50rpx'></image>
